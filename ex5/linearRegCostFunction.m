@@ -11,11 +11,15 @@ m = length(y); % number of training examples
 % You need to return the following variables correctly 
 yPredicted = X * theta;
 temp = yPredicted - y;
+
+grad = sum(temp .* X) ./ m;
+Theta = theta;
+Theta(1) = 0;
+grad = grad' + lambda/m .* Theta;
 temp = temp .^ 2;
 J = sum(temp)/(2*m);
 J = J + lambda/(2*m) * sum(theta(2:end) .^ 2); 
 
-grad = zeros(size(theta));
 
 
 
@@ -28,8 +32,6 @@ grad = zeros(size(theta));
 
 
 
-
-% =========================================================================
 
 grad = grad(:);
 
